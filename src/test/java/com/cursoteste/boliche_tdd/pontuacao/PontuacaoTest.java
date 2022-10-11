@@ -236,5 +236,27 @@ public class PontuacaoTest {
             assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 77 Rodada: 9 entre a segunda e terceira jogada");
         }
     }
+
+    @Test
+    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosComPontosETraços()
+    {
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","3"},
+                {"3","3"},
+                {"2","3"},
+                {"4","-"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","-"},
+                {"3","3"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 64 );
+    }
     
 }
