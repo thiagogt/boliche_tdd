@@ -414,8 +414,11 @@ public class PontuacaoTest {
                     assertEquals(e.getClass(),RuntimeException.class);
                     assertEquals(e.getMessage(),"Ponto Spare invalido! Nao existe spare na primeira jogada. Não seria Strike? (X):  Rodada: 8");
                 }
-
-        partida = new String[][]{
+            }
+            @Test
+    public void Deve_RetornarErro_Quando_QuadrosComSpareSeguidos()
+    {
+        String[][] partida = new String[][]{
             {"0","1"}, 
             {"0","1"},
             {"0","1"},
@@ -427,7 +430,7 @@ public class PontuacaoTest {
             {"0","/"}, 
             {"3","/","/"}}; 
     
-            pontuacao = new Pontuacao()
+            Pontuacao pontuacao = new Pontuacao()
                 .setPontosPartida(partida);
 
 
