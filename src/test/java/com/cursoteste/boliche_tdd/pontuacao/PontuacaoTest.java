@@ -26,8 +26,7 @@ public class PontuacaoTest {
                 {"4","3"},
                 {"4","3"},
                 {"3","3"},
-                {"3","3"},
-                {"1","3"}};
+                {"3","3"}};
         
 
 
@@ -49,8 +48,7 @@ public class PontuacaoTest {
                 {"4","3"},
                 {"4","3"},
                 {"3","3"},
-                {"3","3"},
-                {"1","3"}};
+                {"3","3"}};
         
 
 
@@ -77,8 +75,7 @@ public class PontuacaoTest {
                 {"4","3"},
                 {"4","3"},
                 {"3","3"},
-                {"3","3"},
-                {"1","3"}};
+                {"3","3"}};
         
 
 
@@ -105,8 +102,7 @@ public class PontuacaoTest {
                 {"4","3"},
                 {"4","3"},
                 {"3","3"},
-                {"3","3"},
-                {"1","3"}};
+                {"3","3"}};
         
 
 
@@ -116,6 +112,33 @@ public class PontuacaoTest {
         catch(Exception e){
             assertEquals(e.getClass(),RuntimeException.class);
             assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 11 Rodada: 0");
+        }
+        
+    }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComCaracateresNumericosMaioresQueLimitePossivelNaUltimaRodada()
+    {
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"3","X","11"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Ponto invalido: 11 Rodada: 9");
         }
         
     }
