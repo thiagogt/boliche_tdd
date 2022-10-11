@@ -9,6 +9,21 @@ public class App
 {
     public static void main( String[] args )
     {
+
+        if (args.length < 1) 
+            defaultCase();
+
+        else{
+            printInicioMensagem();
+            System.out.println("Logo mais vira uma funcionalidade que pega os valores de um csv...aguarde =)");
+            printFinalMensagem();
+
+        }
+
+       
+    }
+
+    public static void defaultCase(){
         String[][] partida_1 = new String[][]{
             {"8","-"}, 
             {"7","-"},
@@ -34,8 +49,7 @@ public class App
 
         casoExemplo(partida_1);
         casoExemplo(partida_2);
-    }
-
+        }
     
 
     public static void casoExemplo(String[][] partida){
