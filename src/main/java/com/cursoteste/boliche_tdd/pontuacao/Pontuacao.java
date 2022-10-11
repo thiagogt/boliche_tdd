@@ -55,7 +55,10 @@ public class Pontuacao {
         int strike = 0;
 
         for (int i=0; i < NUM_MAX_RODADAS; i++) {
+            
             String[] rodada = this.pontos[i];
+            int pontosPorRodada = 0;
+            
             for (int j = 0; j < rodada.length; j++) {
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
@@ -64,9 +67,13 @@ public class Pontuacao {
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
                     
                 ponto = Integer.parseInt(pontoDescrito);
-                if(ponto < 0)
+                if(ponto < 0  )
                     throw new RuntimeException("Ponto invalido: "+ponto+" Rodada: "+ i);
                 soma += ponto;
+                
+                pontosPorRodada +=ponto;
+                if(pontosPorRodada > PINOS_MAX_RODADA)
+                    throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i);
                         
                 }
                     

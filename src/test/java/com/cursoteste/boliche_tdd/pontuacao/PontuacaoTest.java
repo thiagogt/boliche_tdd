@@ -115,7 +115,7 @@ public class PontuacaoTest {
         try {pontuacao.calculaSomaPontos(); assertFalse(true);}
         catch(Exception e){
             assertEquals(e.getClass(),RuntimeException.class);
-            assertEquals(e.getMessage(),"Ponto invalido: -1 Rodada: 0");
+            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 11 Rodada: 0");
         }
         
     }
