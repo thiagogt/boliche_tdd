@@ -14,13 +14,15 @@ public class PontuacaoTest {
     @Test
     public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosValidosForemDados()
     {
+        int[] rodadaInicial = new int[]{8,0};
+        int[] rodadaFinal = new int[]{8,1,0};
 
-        Pontuacao pontuacao = new Pontuacao();
-        int[] rodadaInicial = {8,0};
-        int[] rodadaFinal = {9,2};
-        pontuacao.setPontosDaRodada(0, rodadaInicial);
-        pontuacao.setPontosDaRodada(1, rodadaFinal);
-        assertEquals( pontuacao.calculaSomaPontos(), 19 );
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosDaRodada(0, rodadaInicial)
+            .setPontosDaRodada(1, rodadaFinal);
+
+        assertEquals( pontuacao.calculaSomaPontos(), 17 );
     }
     
 }

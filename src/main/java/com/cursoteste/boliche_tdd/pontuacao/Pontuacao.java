@@ -10,6 +10,9 @@ public class Pontuacao {
     private int[][] pontos = new int[NUM_MAX_RODADAS][];
 
     public Pontuacao() {
+        for(int i = 0; i < NUM_MAX_RODADAS; i++){
+            this.pontos[i] = new int[]{0,0,0};
+        }
         
     }
 
@@ -38,6 +41,15 @@ public class Pontuacao {
     }
     
     public int calculaSomaPontos(){
-        return 8;
+        int soma = 0;
+        for (int[] rodada : this.pontos) {
+            for (int ponto : rodada) {
+                soma += ponto;
+                
+            }
+            
+        }
+
+        return soma;
     }
 }
