@@ -2,6 +2,8 @@ package com.cursoteste.boliche_tdd.pontuacao;
 
 import static org.junit.jupiter.api.Assertions.assertTrue;
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
 import org.junit.jupiter.api.Test;
 
@@ -32,6 +34,62 @@ public class PontuacaoTest {
         Pontuacao pontuacao = new Pontuacao()
             .setPontosPartida(partida);
         assertEquals( pontuacao.calculaSomaPontos(), 70 );
+    }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComCaracateresInvalidos()
+    {
+        String[][] partida = new String[][]{
+                {"8","A"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"3","3"},
+                {"1","3"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),NumberFormatException.class);
+            assertEquals(e.getMessage(),"For input string: \"A\"");
+        }
+        
+    }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComCaracateresNumericosForaDoDominio()
+    {
+        String[][] partida = new String[][]{
+                {"8","-1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"3","3"},
+                {"1","3"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),NumberFormatException.class);
+            assertEquals(e.getMessage(),"For input string: \"A\"");
+        }
+        
     }
     
 }
