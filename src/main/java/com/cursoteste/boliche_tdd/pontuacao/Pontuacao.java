@@ -4,6 +4,9 @@ import java.util.ArrayDeque;
 
 /**
  * Pontuacao
+ * 
+ * Essa classe esta no momento perfeito para uma refatoracao, dado que tem todos os testes passando.
+ * Montar um buffer de soma eh muito bem vindo!!!
  */
 public class Pontuacao {
 
@@ -85,7 +88,7 @@ public class Pontuacao {
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
 
-                System.out.println("ponto anterior: "+pontoAnterior);
+                
                 if(pontoDescrito.equals("X")){pontoDescrito = "10"; strike = (i!= 9);duplicadoPorBonusSequencial = pontoAnterior.equals("10");}
                 if(pontoDescrito.equals("/")){ spare = true; pontoDescrito = "0";duplicadoPorBonusSequencial = pontoAnterior.equals("10");}
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
@@ -127,7 +130,7 @@ public class Pontuacao {
                     if(pontoDescrito.equals("-"))proximoPontoBonus = 10; 
                     else{proximoPontoBonus = Integer.parseInt(proximoPonto);}
 
-                    System.out.println("ponto bonus: "+proximoPontoBonus);
+                    
                     soma +=proximoPontoBonus;
 
                     duplicadoPorBonusSequencial = false;
@@ -136,7 +139,7 @@ public class Pontuacao {
 
 
                 pontoAnterior = new String(pontoDescrito);
-                System.out.println("Soma: "+soma+ " depois - mult: "+multiply+" rodada: "+ (i+1));
+                
                 pontosPorRodada +=ponto;
                 if(i == (NUM_MAX_RODADAS-1)){
                     if(rodada.length > NUM_MAX_JOGADAS_ULTIMA_RODADA)
@@ -175,5 +178,18 @@ public class Pontuacao {
         }
         
         return soma;
+    }
+
+    public void print(){
+        for (String[] rodada : this.pontos) {
+            System.out.print(" (");
+            for (int i=0;i<rodada.length;i++) {
+                System.out.print(rodada[i]);
+                if(i < rodada.length -1)
+                System.out.print(",");
+            }
+            System.out.print("),");
+        }
+        System.out.println();
     }
 }
