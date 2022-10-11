@@ -184,5 +184,57 @@ public class PontuacaoTest {
             }
         
     }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComCaracateresSomatoriaMaiorsQueLimitePossivelNaUltimaRodadaSegundaJogada()
+    {
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"7","7","1"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 14 Rodada: 9 na seguda jogada");
+        }
+    }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComCaracateresSomatoriaMaiorsQueLimitePossivelNaUltimaRodadaterceiraJogada()
+    {
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"X","7","7"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 77 Rodada: 9 entre a segunda e terceira jogada");
+        }
+    }
     
 }
