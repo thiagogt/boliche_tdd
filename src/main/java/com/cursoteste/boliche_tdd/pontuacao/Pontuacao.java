@@ -61,6 +61,11 @@ public class Pontuacao {
             for (int j = 0; j < rodada.length; j++) {
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
+                
+                int primeiroPontoFinal = 0;
+                int segundoPontoFinal = 0;
+                int terceiroPontoFinal = 0;
+
                 if(pontoDescrito.equals("X")){pontoDescrito = "10"; }
                 if(pontoDescrito.equals("/")){pontoDescrito = "0"; }
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
@@ -72,9 +77,28 @@ public class Pontuacao {
                 soma += ponto;
                 
                 pontosPorRodada +=ponto;
-                if(pontosPorRodada >  PINOS_MAX_RODADA)
-                    throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i);
+                if(i == (NUM_MAX_RODADAS-1)){
+                    switch (j){
+                        case 0:
+                            primeiroPontoFinal = ponto;
+                            break;
+                        case 1:
+                            segundoPontoFinal = ponto;
+                            if(primeiroPontoFinal != 10)
+                                if(pontosPorRodada > PINOS_MAX_RODADA && segundoPontoFinal != 10)
+                                 throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i+" na seguda jogada");
+                            break;
+                        case 2:
+                            
+                            terceiroPontoFinal = ponto;
+                            break;
+                    }
+                } else{
+                    if(pontosPorRodada >  PINOS_MAX_RODADA)
+                        throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i);
                 
+                }
+
                 
             }
             

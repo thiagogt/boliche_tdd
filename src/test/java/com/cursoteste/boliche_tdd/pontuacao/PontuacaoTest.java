@@ -140,6 +140,48 @@ public class PontuacaoTest {
             assertEquals(e.getClass(),RuntimeException.class);
             assertEquals(e.getMessage(),"Ponto invalido: 11 Rodada: 9");
         }
+        partida = new String[][]{
+            {"8","1"},
+            {"4","2"},
+            {"3","3"},
+            {"2","3"},
+            {"4","3"},
+            {"7","3"},
+            {"4","3"},
+            {"4","3"},
+            {"3","3"},
+            {"11","X","2"}};
+    
+
+
+            pontuacao = new Pontuacao()
+                .setPontosPartida(partida);
+            try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+            catch(Exception e){
+                assertEquals(e.getClass(),RuntimeException.class);
+                assertEquals(e.getMessage(),"Ponto invalido: 11 Rodada: 9");
+            }
+            partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"X","11","2"}};
+
+
+
+            pontuacao = new Pontuacao()
+                .setPontosPartida(partida);
+            try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+            catch(Exception e){
+                assertEquals(e.getClass(),RuntimeException.class);
+                assertEquals(e.getMessage(),"Ponto invalido: 11 Rodada: 9");
+            }
         
     }
     
