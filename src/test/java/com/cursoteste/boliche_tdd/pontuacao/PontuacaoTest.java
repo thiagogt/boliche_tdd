@@ -12,17 +12,26 @@ import org.junit.jupiter.api.Test;
 public class PontuacaoTest {
 
     @Test
-    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosValidosForemDados()
+    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosApenasComPontosNumericos()
     {
-        String[] rodadaInicial = new String[]{"8","/"};
-        String[] rodadaFinal = new String[]{"X","-","1"};
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","3"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"3","3"},
+                {"1","3"}};
+        
 
 
         Pontuacao pontuacao = new Pontuacao()
-            .setPontosDaRodada(0, rodadaInicial)
-            .setPontosDaRodada(1, rodadaFinal);
-
-        assertEquals( pontuacao.calculaSomaPontos(), 17 );
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 70 );
     }
     
 }

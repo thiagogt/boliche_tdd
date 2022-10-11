@@ -27,6 +27,11 @@ public class Pontuacao {
             return this.pontos[rodada];
         throw new RuntimeException("Rodada invalida");
     }
+    
+    public Pontuacao setPontosPartida(String [][]partida){
+        this.pontos = partida;
+        return this;
+    }
 
     public Pontuacao setPontosDaRodada(int rodada, String[] pontos){
 
@@ -52,7 +57,7 @@ public class Pontuacao {
             for (int j = 0; j < rodada.length; j++) {
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
-                if(pontoDescrito.equals("X")){pontoDescrito = "0"; }
+                if(pontoDescrito.equals("X")){pontoDescrito = "10"; }
                 if(pontoDescrito.equals("/")){pontoDescrito = "0"; }
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
                     
