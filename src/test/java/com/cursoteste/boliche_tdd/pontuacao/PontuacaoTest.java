@@ -17,8 +17,10 @@ public class PontuacaoTest {
 
         Pontuacao pontuacao = new Pontuacao();
         int[] rodadaInicial = {8,0};
+        int[] rodadaFinal = {9,2};
         pontuacao.setPontosDaRodada(0, rodadaInicial);
-        assertEquals( pontuacao.calculaSomaPontos(), 8 );
+        pontuacao.setPontosDaRodada(1, rodadaFinal);
+        assertEquals( pontuacao.calculaSomaPontos(), 19 );
     }
     
 }
