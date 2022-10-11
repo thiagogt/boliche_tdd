@@ -52,13 +52,14 @@ public class Pontuacao {
     
     public int calculaSomaPontos(){
         int soma = 0;
-        int spare = 0;
-        int strike = 0;
-
+        
         int primeiroPontoFinal = 0;
             int segundoPontoFinal = 0;
             int terceiroPontoFinal = 0;
 
+            int multiply = 0;
+            boolean spare = false;
+    
         for (int i=0; i < NUM_MAX_RODADAS; i++) {
             
             String[] rodada = this.pontos[i];
@@ -67,18 +68,30 @@ public class Pontuacao {
             
             
             for (int j = 0; j < rodada.length; j++) {
+                
+                if(spare){
+                    multiply = 1;
+                    spare = false;
+                }
+
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
 
                 if(pontoDescrito.equals("X")){pontoDescrito = "10"; }
-                if(pontoDescrito.equals("/")){pontoDescrito = "0"; }
+                if(pontoDescrito.equals("/")){ spare = true; pontoDescrito = "0";}
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
                     
                 ponto = Integer.parseInt(pontoDescrito);
+                if(spare)
+                    ponto = 10 - Integer.parseInt(rodada[j-1]);
                 
                 if(ponto < 0  || ponto > PINOS_MAX_RODADA)
                     throw new RuntimeException("Ponto invalido: "+ponto+" Rodada: "+ i);
                 soma += ponto;
+                if(multiply > 0){
+                    soma += ponto;
+                    multiply--;
+                }
                 
                 pontosPorRodada +=ponto;
                 if(i == (NUM_MAX_RODADAS-1)){

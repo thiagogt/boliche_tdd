@@ -353,6 +353,24 @@ public class PontuacaoTest {
         Pontuacao pontuacao = new Pontuacao()
             .setPontosPartida(partida);
         assertEquals( pontuacao.calculaSomaPontos(), 27 );
+
+        partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","/"}, // 17
+            {"0","/"}, //27 + 3 = 30
+            {"3","3"}}; //36
+    
+
+
+        pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 36 );
     }
     
 }
