@@ -372,5 +372,52 @@ public class PontuacaoTest {
             .setPontosPartida(partida);
         assertEquals( pontuacao.calculaSomaPontos(), 36 );
     }
+
+    @Test
+    public void Deve_RetornarErro_Quando_QuadrosComSpareNaPrimeiraJogada()
+    {
+        String[][] partida = new String[][]{
+                {"0","1"}, 
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"}, 
+                {"/","/"}, 
+                {"3","3"}};
+        
+                Pontuacao pontuacao = new Pontuacao()
+                .setPontosPartida(partida);
+
+                try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+                catch(Exception e){
+                    assertEquals(e.getClass(),RuntimeException.class);
+                    assertEquals(e.getMessage(),"Ponto Spare invalido! Nao existe spare na primeira jogada. Não seria Strike? (X):  Rodada: 8");
+                }
+
+        partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","/"}, 
+            {"0","/"}, 
+            {"3","/","/"}}; 
+    
+            pontuacao = new Pontuacao()
+                .setPontosPartida(partida);
+
+
+            try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+            catch(Exception e){
+                assertEquals(e.getClass(),RuntimeException.class);
+                assertEquals(e.getMessage(),"Total de 3 quadros incompativel para rodada: 9");
+            }
+    }
     
 }

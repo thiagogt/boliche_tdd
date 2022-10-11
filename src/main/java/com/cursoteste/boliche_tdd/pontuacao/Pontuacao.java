@@ -83,7 +83,11 @@ public class Pontuacao {
                     
                 ponto = Integer.parseInt(pontoDescrito);
                 if(spare)
-                    ponto = 10 - Integer.parseInt(rodada[j-1]);
+                    try{
+                        ponto = 10 - Integer.parseInt(rodada[j-1]);
+                    }catch(ArrayIndexOutOfBoundsException e){
+                        throw new RuntimeException("Ponto Spare invalido! Nao existe spare na primeira jogada. Não seria Strike? (X):  Rodada: "+ i);    
+                    }
                 
                 if(ponto < 0  || ponto > PINOS_MAX_RODADA)
                     throw new RuntimeException("Ponto invalido: "+ponto+" Rodada: "+ i);
