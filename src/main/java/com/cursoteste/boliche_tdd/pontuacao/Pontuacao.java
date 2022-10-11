@@ -10,6 +10,7 @@ public class Pontuacao {
     private static final int NUM_MAX_RODADAS = 10;
     private static final int PINOS_MAX_RODADA = 10;
     private static final int NUM_MAX_JOGAADAS = 2;
+    private static final int NUM_MAX_JOGADAS_ULTIMA_RODADA = 3;
 
     private String[][] pontos = new String[NUM_MAX_RODADAS][];
 
@@ -81,21 +82,26 @@ public class Pontuacao {
                 
                 pontosPorRodada +=ponto;
                 if(i == (NUM_MAX_RODADAS-1)){
+                    if(rodada.length > NUM_MAX_JOGADAS_ULTIMA_RODADA)
+                    throw new RuntimeException("Total de "+rodada.length+" quadros incompativel para ultima rodada");    
                     switch (j){
                         case 0:
                             primeiroPontoFinal = ponto;
                             break;
                         case 1:
                             segundoPontoFinal = ponto;
-                            if(primeiroPontoFinal != 10)
-                                if(pontosPorRodada > PINOS_MAX_RODADA && segundoPontoFinal != 10)
+                            if(primeiroPontoFinal != 10){
+                                if(pontosPorRodada > NUM_MAX_RODADAS && segundoPontoFinal != PINOS_MAX_RODADA)
                                  throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i+" na seguda jogada");
+                                if(segundoPontoFinal != PINOS_MAX_RODADA && rodada.length > NUM_MAX_JOGAADAS)
+                                 throw new RuntimeException("Total de "+rodada.length+" quadros incompativel para rodada: "+ i);    
+                            }
                             break;
                         case 2:
                             terceiroPontoFinal = ponto;
                             if(primeiroPontoFinal == 10)
                                 if(segundoPontoFinal + terceiroPontoFinal > PINOS_MAX_RODADA )
-                                throw new RuntimeException("Somatoria de pontos por rodada invalida: "+segundoPontoFinal + terceiroPontoFinal+" Rodada: "+ i+" entre a segunda e terceira jogada");
+                                    throw new RuntimeException("Somatoria de pontos por rodada invalida: "+segundoPontoFinal + terceiroPontoFinal+" Rodada: "+ i+" entre a segunda e terceira jogada");
                             break;
                     }
                 } else{

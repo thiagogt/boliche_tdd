@@ -264,6 +264,54 @@ public class PontuacaoTest {
     }
 
     @Test
+    public void Deve_RetornarErro_Quando_UltimaRodadasTiveremMaisQueQuadrosPermitidos()
+    {
+        String[][] partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"1","1","7"}};
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Total de 3 quadros incompativel para rodada: 9");
+        }
+
+             partida = new String[][]{
+                {"8","1"},
+                {"4","2"},
+                {"3","3"},
+                {"2","3"},
+                {"4","3"},
+                {"7","3"},
+                {"4","3"},
+                {"4","3"},
+                {"3","3"},
+                {"X","1","7","3"}};
+        
+
+
+         pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        try {pontuacao.calculaSomaPontos(); assertFalse(true);}
+        catch(Exception e){
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Total de 4 quadros incompativel para ultima rodada");
+        }
+    }
+
+    @Test
     public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosComPontosETraços()
     {
         String[][] partida = new String[][]{
