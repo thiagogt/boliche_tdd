@@ -51,5 +51,9 @@ Baixe a JDK 1.7 em qualquer site e rode :
 
 * navegue até a pasta target/, onde se encontra o boliche_tdd.jar
 
-* executar 
+
+### Casos do exercicio (default) ###
 * * java -cp boliche_tdd-< versao no pom >.jar <nome-da-classe-main> com.cursoteste.boliche_tdd.App
+
+### Casos de erro ###
+* * java -cp boliche_tdd-< versao no pom >.jar <nome-da-classe-main> com.cursoteste.boliche_tdd.App -e
