@@ -8,6 +8,8 @@ import java.util.ArrayDeque;
 public class Pontuacao {
 
     private static final int NUM_MAX_RODADAS = 10;
+    private static final int PINOS_MAX_RODADA = 10;
+    private static final int PINOS_MAX_ULTIMA_RODADA = 30;
 
     private String[][] pontos = new String[NUM_MAX_RODADAS][];
 
