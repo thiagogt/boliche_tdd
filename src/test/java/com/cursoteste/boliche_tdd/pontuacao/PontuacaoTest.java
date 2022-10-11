@@ -419,5 +419,26 @@ public class PontuacaoTest {
                 assertEquals(e.getMessage(),"Total de 3 quadros incompativel para rodada: 9");
             }
     }
+
+    @Test
+    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosComPontosEStrikes()
+    {
+        String[][] partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"}, // 8
+            {"0","X"}, //18 + 3 + 3 = 24
+            {"3","3"}}; //30
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 30 );
+    }
     
 }
