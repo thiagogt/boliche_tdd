@@ -20,8 +20,8 @@ Para maiores infgormações dos clicos de vidas e passos envolvendo o Maven:
 #### JAVA_HOME e MAVEN_HOME ####
 Baixe a JDK 1.7 em qualquer site e rode :
 
-* export JAVA_HOME=<Path do JDK17 baixado>
-* export MAVEN_HOME=<Path do Maven baixado>
+* export JAVA_HOME= < Path do JDK17 baixado >
+* export MAVEN_HOME= < Path do Maven baixado >
 
 #### Rodar os testes ####
 
@@ -51,4 +51,5 @@ Baixe a JDK 1.7 em qualquer site e rode :
 
 * navegue até a pasta target/, onde se encontra o boliche_tdd.jar
 
-* executar java -cp boliche_tdd-< versao no pom >.jar <nome-da-classe-main> com.cursoteste.boliche_tdd.App
+* executar 
+* * java -cp boliche_tdd-< versao no pom >.jar <nome-da-classe-main> com.cursoteste.boliche_tdd.App
