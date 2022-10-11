@@ -12,7 +12,7 @@ public class AppTest
 {
     
     @Test
-    public void shouldAnswerWithTrue()
+    public void Deve_iniciar()
     {
         assertTrue( true );
     }

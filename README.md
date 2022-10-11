@@ -1,6 +1,6 @@
 # boliche_tdd
 
-Exercicio proposta para pratica do TDD. 
+Exercicio proposto para pratica do TDD. 
 
 ## Exercicio ##
 
