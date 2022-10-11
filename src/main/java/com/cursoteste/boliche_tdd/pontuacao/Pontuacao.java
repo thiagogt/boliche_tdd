@@ -1,5 +1,7 @@
 package com.cursoteste.boliche_tdd.pontuacao;
 
+import java.util.ArrayDeque;
+
 /**
  * Pontuacao
  */
@@ -42,14 +44,28 @@ public class Pontuacao {
     
     public int calculaSomaPontos(){
         int soma = 0;
-        for (String[] rodada : this.pontos) {
-            for (String ponto : rodada) {
+        int spare = 0;
+        int strike = 0;
 
-                soma += Integer.parseInt(ponto);
+        for (int i=0; i < NUM_MAX_RODADAS; i++) {
+            String[] rodada = this.pontos[i];
+            for (int j = 0; j < rodada.length; j++) {
+                String pontoDescrito =  rodada[j];
+                int ponto = 0;
+                if(pontoDescrito.equals("X")){pontoDescrito = "0"; }
+                if(pontoDescrito.equals("/")){pontoDescrito = "0"; }
+                if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
+                    
+                ponto = Integer.parseInt(pontoDescrito);
+                soma += ponto;
+                        
+                }
+                    
+                
                 
             }
             
-        }
+        
 
         return soma;
     }
