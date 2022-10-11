@@ -259,7 +259,7 @@ public class PontuacaoTest {
         try {pontuacao.calculaSomaPontos(); assertFalse(true);}
         catch(Exception e){
             assertEquals(e.getClass(),RuntimeException.class);
-            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 77 Rodada: 9 entre a segunda e terceira jogada");
+            assertEquals(e.getMessage(),"Total de 3 quadros incompativel para rodada: 1");
         }
     }
 
