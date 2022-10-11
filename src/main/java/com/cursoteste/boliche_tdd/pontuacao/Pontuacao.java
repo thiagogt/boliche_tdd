@@ -7,26 +7,26 @@ public class Pontuacao {
 
     private static final int NUM_MAX_RODADAS = 10;
 
-    private int[][] pontos = new int[NUM_MAX_RODADAS][];
+    private String[][] pontos = new String[NUM_MAX_RODADAS][];
 
     public Pontuacao() {
         for(int i = 0; i < NUM_MAX_RODADAS; i++){
-            this.pontos[i] = new int[]{0,0,0};
+            this.pontos[i] = new String[]{"0","0","0"};
         }
         
     }
 
-    public int[][] getPontos(){
+    public String[][] getPontos(){
         return this.pontos;
     }
 
-    public int[] getPontosDaRodada(int rodada){
+    public String[] getPontosDaRodada(int rodada){
         if(rodadaValida(rodada))
             return this.pontos[rodada];
         throw new RuntimeException("Rodada invalida");
     }
 
-    public Pontuacao setPontosDaRodada(int rodada, int[] pontos){
+    public Pontuacao setPontosDaRodada(int rodada, String[] pontos){
 
         if(rodadaValida(rodada)){
             this.pontos[rodada] = pontos;
@@ -42,9 +42,10 @@ public class Pontuacao {
     
     public int calculaSomaPontos(){
         int soma = 0;
-        for (int[] rodada : this.pontos) {
-            for (int ponto : rodada) {
-                soma += ponto;
+        for (String[] rodada : this.pontos) {
+            for (String ponto : rodada) {
+
+                soma += Integer.parseInt(ponto);
                 
             }
             
