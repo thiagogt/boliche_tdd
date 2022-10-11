@@ -333,5 +333,26 @@ public class PontuacaoTest {
         assertEquals( pontuacao.calculaSomaPontos(), 64 );
     }
 
+    @Test
+    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosComPontosTraçosESpare()
+    {
+        String[][] partida = new String[][]{
+                {"0","1"}, 
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"},
+                {"0","1"}, // 8
+                {"0","/"}, //18 + 3 = 21
+                {"3","3"}}; //27
+        
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 27 );
+    }
     
 }
