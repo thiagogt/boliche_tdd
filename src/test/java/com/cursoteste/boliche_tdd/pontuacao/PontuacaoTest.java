@@ -86,8 +86,8 @@ public class PontuacaoTest {
             .setPontosPartida(partida);
         try {pontuacao.calculaSomaPontos(); assertFalse(true);}
         catch(Exception e){
-            assertEquals(e.getClass(),NumberFormatException.class);
-            assertEquals(e.getMessage(),"For input string: \"A\"");
+            assertEquals(e.getClass(),RuntimeException.class);
+            assertEquals(e.getMessage(),"Ponto invalido: -1 Rodada: 0");
         }
         
     }

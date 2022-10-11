@@ -27,7 +27,7 @@ public class Pontuacao {
             return this.pontos[rodada];
         throw new RuntimeException("Rodada invalida");
     }
-    
+
     public Pontuacao setPontosPartida(String [][]partida){
         this.pontos = partida;
         return this;
@@ -62,6 +62,8 @@ public class Pontuacao {
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
                     
                 ponto = Integer.parseInt(pontoDescrito);
+                if(ponto < 0)
+                    throw new RuntimeException("Ponto invalido: "+ponto+" Rodada: "+ i);
                 soma += ponto;
                         
                 }
