@@ -388,7 +388,7 @@ public class PontuacaoTest {
 
         pontuacao = new Pontuacao()
             .setPontosPartida(partida);
-        assertEquals( pontuacao.calculaSomaPontos(), 54 );
+        assertEquals( pontuacao.calculaSomaPontos(), 47 );
     }
 
     @Test
@@ -549,7 +549,7 @@ public class PontuacaoTest {
 
          pontuacao = new Pontuacao()
             .setPontosPartida(partida);
-        assertEquals( pontuacao.calculaSomaPontos(), 132 );
+        assertEquals( pontuacao.calculaSomaPontos(), 133 );
 
     }
     
