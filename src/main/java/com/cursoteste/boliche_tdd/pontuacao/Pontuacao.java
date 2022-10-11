@@ -76,32 +76,39 @@ public class Pontuacao {
                 }
                 if(strike){
                     multiply = 2;
-                    spare = false;
+                    strike = false;
                 }
 
                 String pontoDescrito =  rodada[j];
                 int ponto = 0;
 
-                if(pontoDescrito.equals("X")){pontoDescrito = "10"; strike = true;}
+                if(pontoDescrito.equals("X")){pontoDescrito = "10"; strike = (i!= 9);}
                 if(pontoDescrito.equals("/")){ spare = true; pontoDescrito = "0";}
                 if(pontoDescrito.equals("-")){pontoDescrito = "0"; }
                     
                 ponto = Integer.parseInt(pontoDescrito);
                 if(spare)
                     try{
-                        ponto = 10 - Integer.parseInt(rodada[j-1]);
+                        if(rodada[j-1].equals("-"))
+                            ponto = 10;
+                        else{    
+                            ponto = 10 - Integer.parseInt(rodada[j-1]);
+                        }
                     }catch(ArrayIndexOutOfBoundsException e){
                         throw new RuntimeException("Ponto Spare invalido! Nao existe spare na primeira jogada. Não seria Strike? (X):  Rodada: "+ i);    
+                    }catch(NumberFormatException e){
+                        throw new RuntimeException("Ponto Spare invalido! Não seria Strike? (X):  Rodada: "+ i);    
                     }
                 
                 if(ponto < 0  || ponto > PINOS_MAX_RODADA)
                     throw new RuntimeException("Ponto invalido: "+ponto+" Rodada: "+ i);
                 soma += ponto;
+               System.out.println("Soma: "+soma+ " antes - mult: "+multiply+" rodada: "+ (i+1));
                 if(multiply > 0){
                     soma += ponto;
                     multiply--;
                 }
-                
+                System.out.println("Soma: "+soma+ " depois - mult: "+multiply+" rodada: "+ (i+1));
                 pontosPorRodada +=ponto;
                 if(i == (NUM_MAX_RODADAS-1)){
                     if(rodada.length > NUM_MAX_JOGADAS_ULTIMA_RODADA)
@@ -115,7 +122,7 @@ public class Pontuacao {
                             if(primeiroPontoFinal != 10){
                                 if(pontosPorRodada > NUM_MAX_RODADAS && segundoPontoFinal != PINOS_MAX_RODADA)
                                  throw new RuntimeException("Somatoria de pontos por rodada invalida: "+pontosPorRodada+" Rodada: "+ i+" na seguda jogada");
-                                if(segundoPontoFinal != PINOS_MAX_RODADA && rodada.length > NUM_MAX_JOGAADAS)
+                                if(segundoPontoFinal != PINOS_MAX_RODADA && rodada.length > NUM_MAX_JOGAADAS && !rodada[1].equals("/"))
                                  throw new RuntimeException("Total de "+rodada.length+" quadros incompativel para rodada: "+ i);    
                             }
                             break;
@@ -134,11 +141,11 @@ public class Pontuacao {
                 
                 }
 
-                
+             
             }
             
         }
-
+        
         return soma;
     }
 }

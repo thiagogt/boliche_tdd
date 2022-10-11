@@ -371,6 +371,24 @@ public class PontuacaoTest {
         pontuacao = new Pontuacao()
             .setPontosPartida(partida);
         assertEquals( pontuacao.calculaSomaPontos(), 36 );
+
+        partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","/"}, // 17
+            {"0","/"}, //27 + 3 = 30
+            {"3","/","7"}}; //47
+    
+
+
+        pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 54 );
     }
 
     @Test
@@ -416,7 +434,7 @@ public class PontuacaoTest {
             try {pontuacao.calculaSomaPontos(); assertFalse(true);}
             catch(Exception e){
                 assertEquals(e.getClass(),RuntimeException.class);
-                assertEquals(e.getMessage(),"Total de 3 quadros incompativel para rodada: 9");
+                assertEquals(e.getMessage(),"Ponto Spare invalido! Não seria Strike? (X):  Rodada: 9");
             }
     }
 
@@ -468,14 +486,71 @@ public class PontuacaoTest {
             {"0","1"},
             {"0","1"},
             {"0","X"}, // 17 +10 = 27
-            {"0","X"}, //27 + 10 + 10  = 47
-            {"X","X", "X"}}; //47 + 10 = 57 + 10 +10 = 67 + 10 = 77 +10 = 87 +10 = 97
+            {"0","X"}, //27 + 10 =37+ 10+10  = 57
+            {"X","X", "X"}}; //57 + 10 = 67 + 10 +10 = 87
     
 
 
         pontuacao = new Pontuacao()
             .setPontosPartida(partida);
-        assertEquals( pontuacao.calculaSomaPontos(), 97 );
+        assertEquals( pontuacao.calculaSomaPontos(), 87 );
+    }
+    
+    @Test
+    public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosComPontosTracosSpareEStrikes()
+    {
+        String[][] partida = new String[][]{
+            {"-","1"}, 
+            {"-","1"},
+            {"-","1"},
+            {"-","1"},
+            {"-","1"},
+            {"-","1"},
+            {"-","/"}, // 6+10 = 16 + 0 = 16
+            {"-","1"}, // 16+1 = 17
+            {"-","X"}, //17 +10 + 3 + 0 = 30
+            {"3","-"}}; //30+3 = 33
+
+
+        Pontuacao pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 33 );
+
+
+        partida = new String[][]{
+            {"8","-"}, 
+            {"7","-"},
+            {"5","3"},
+            {"9","/"},
+            {"9","/"},
+            {"X"},
+            {"8","-"}, 
+            {"5","1"}, 
+            {"3","/"}, 
+            {"9","-"}};
+
+
+         pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 122 );
+
+        partida = new String[][]{
+            {"8","/"}, 
+            {"9","-"},
+            {"4","4"},
+            {"7","2"},
+            {"9","-"},
+            {"X"},
+            {"X"}, 
+            {"8","-"}, 
+            {"3","5"}, 
+            {"9","/","7"}};
+
+
+         pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 132 );
+
     }
     
 }
