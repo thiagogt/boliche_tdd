@@ -233,7 +233,7 @@ public class PontuacaoTest {
         try {pontuacao.calculaSomaPontos(); assertFalse(true);}
         catch(Exception e){
             assertEquals(e.getClass(),RuntimeException.class);
-            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 77 Rodada: 9 entre a segunda e terceira jogada");
+            assertEquals(e.getMessage(),"Somatoria de pontos por rodada invalida: 14 Rodada: 9 entre a segunda e terceira jogada");
         }
     }
 
@@ -439,6 +439,43 @@ public class PontuacaoTest {
         Pontuacao pontuacao = new Pontuacao()
             .setPontosPartida(partida);
         assertEquals( pontuacao.calculaSomaPontos(), 30 );
+
+        partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","X"}, // 17 +10 = 27
+            {"0","X"}, //27 + 10 + 3 + 3 = 43
+            {"3","3"}}; //49
+    
+
+
+        pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 49 );
+
+    
+        partida = new String[][]{
+            {"0","1"}, 
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","1"},
+            {"0","X"}, // 17 +10 = 27
+            {"0","X"}, //27 + 10 + 10  = 47
+            {"X","X", "X"}}; //47 + 10 = 57 + 10 +10 = 67 + 10 = 77 +10 = 87 +10 = 97
+    
+
+
+        pontuacao = new Pontuacao()
+            .setPontosPartida(partida);
+        assertEquals( pontuacao.calculaSomaPontos(), 97 );
     }
     
 }
