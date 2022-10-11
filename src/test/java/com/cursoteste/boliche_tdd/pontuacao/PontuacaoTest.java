@@ -14,8 +14,8 @@ public class PontuacaoTest {
     @Test
     public void Deve_RetornarAPontuacaoTotal_Quando_QuadrosValidosForemDados()
     {
-        String[] rodadaInicial = new String[]{"8","0"};
-        String[] rodadaFinal = new String[]{"8","1","0"};
+        String[] rodadaInicial = new String[]{"8","/"};
+        String[] rodadaFinal = new String[]{"X","-","1"};
 
 
         Pontuacao pontuacao = new Pontuacao()
