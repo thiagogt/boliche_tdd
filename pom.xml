@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+  xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+
+  <groupId>com.cursoteste.boliche_tdd</groupId>
+  <artifactId>boliche_tdd</artifactId>
+  <version>1.0</version>
+
+  <name>boliche_app</name>
+  <url>http://www.example.com</url>
+
+  <properties>
+  <java.version>17</java.version>
+    <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    <maven.compiler.source>17</maven.compiler.source>
+    <maven.compiler.target>17</maven.compiler.target>
+  </properties>
+
+  <dependencies>
+   <dependency>
+    <groupId>org.junit.jupiter</groupId>
+    <artifactId>junit-jupiter-engine</artifactId>
+    <version>5.8.1</version>
+    <scope>test</scope>
+</dependency>
+  </dependencies>
+
+  <build>
+    <pluginManagement><!-- lock down plugins versions to avoid using Maven defaults (may be moved to parent pom) -->
+      <plugins>     
+        <!-- clean lifecycle -->
+        <!-- see https://maven.apache.org/ref/current/maven-core/lifecycles.html#clean_Lifecycle -->
+        <plugin>
+          <artifactId>maven-clean-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+        <!-- ================================================================================== -->
+
+        <!-- default lifecycle -->
+        <!-- jar packaging: see https://maven.apache.org/ref/current/maven-core/default-bindings.html#Plugin_bindings_for_jar_packaging -->
+
+        <!-- process-resources phase -->
+        <!-- generate META-INFS como MANIFEST.MD: https://maven.apache.org/apache-resource-bundles/index.html -->
+        <plugin>
+          <artifactId>maven-resources-plugin</artifactId>
+          <version>3.1.0</version>
+        </plugin>
+
+        <!-- Compile phase -->
+        <!--Compiles Java sources : https://maven.apache.org/plugins/maven-compiler-plugin/index.html> -->
+        <plugin>
+          <artifactId>maven-compiler-plugin</artifactId>
+          <version>3.10.1</version>
+          <configuration>
+              <verbose>true</verbose>
+              <fork>true</fork>
+              <executable>/Users/tgtoledo/Documents/JAVA/workspace-only-java/JDK_17/zulu17.36.17/bin/javac</executable>
+              
+          <release>17</release>
+        
+            </configuration>
+        </plugin>
+        
+        <!-- Test phase -->
+        <!--surefire:  File description in test phase. Run the JUnit unit tests in an isolated classloader.  https://maven.apache.org/surefire/maven-surefire-plugin/ -->
+        <plugin>
+          <artifactId>maven-surefire-plugin</artifactId>
+          <version>3.0.0-M7</version>
+          <configuration>
+             <jvm>/Users/tgtoledo/Documents/JAVA/workspace-only-java/JDK_17/zulu17.36.17/bin/java</jvm>
+          </configuration>
+        </plugin>
+
+        <!-- Package phase -->
+        <!-- Build a JAR from the current project: -https://maven.apache.org/plugins/maven-jar-plugin/ -->
+        <plugin>
+          <artifactId>maven-jar-plugin</artifactId>
+          <version>3.0.2</version>
+        </plugin>
+
+        <!-- Install phase -->
+        <!-- Install the built artifact into the local repository (.../user/.m2). https://maven.apache.org/plugins/maven-install-plugin/ -->
+        <plugin>
+          <artifactId>maven-install-plugin</artifactId>
+          <version>2.5.2</version>
+        </plugin>
+
+        <!-- Deploy phase -->
+        <!-- Install the built artifact into the local repository (.../user/.m2). https://maven.apache.org/plugins/maven-install-plugin/ -->
+        <plugin>
+          <artifactId>maven-deploy-plugin</artifactId>
+          <version>2.8.2</version>
+        </plugin>
+
+        <!-- ================================================================================== -->
+        
+        
+        <!-- site lifecycle -->
+        <!-- see https://maven.apache.org/ref/current/maven-core/lifecycles.html#site_Lifecycle -->
+        
+        <!-- Install phase -->
+        <!-- generate the project's site documentation -->
+        <plugin>
+          <artifactId>maven-site-plugin</artifactId>
+          <version>3.7.1</version>
+          <configuration>
+            <jvm>/Users/tgtoledo/Documents/JAVA/workspace-only-java/JDK_17/zulu17.36.17/bin/java</jvm>
+          </configuration>
+        </plugin>
+        <plugin>
+          <artifactId>maven-project-info-reports-plugin</artifactId>
+          <version>3.0.0</version>
+        </plugin>
+
+        <!-- ================================================================================== -->
+      </plugins>
+    </pluginManagement>
+  </build>
+</project>
